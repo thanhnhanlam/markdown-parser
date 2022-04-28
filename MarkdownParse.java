@@ -19,7 +19,6 @@ public class MarkdownParse {
             int openParen = markdown.indexOf("(", closeBracket);
             if (openParen < 0) { break; }
             if (openParen == closeBracket + 1) {
-                System.out.println("line reached");
                 int closeParen = markdown.indexOf(")", openParen);
                 if (openParen < 0) {break; }
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
