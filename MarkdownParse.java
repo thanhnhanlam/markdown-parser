@@ -7,24 +7,20 @@ import java.util.ArrayList;
 
 public class MarkdownParse {
 
-    public static boolean negativeIndex(int index) {
-        return index < 0;
-    }
-
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
         while(currentIndex < markdown.length() && markdown.indexOf("[", currentIndex) != -1) {
             int openBracket = markdown.indexOf("[", currentIndex);
-            if (negativeIndex(openBracket)) { break; }
+            if (index < 0)) { break; }
             int closeBracket = markdown.indexOf("]", openBracket);
-            if (negativeIndex(closeBracket)) { break; }
+            if (index < 0) { break; }
             int openParen = markdown.indexOf("(", closeBracket);
-            if (negativeIndex(openParen)) { break; }
+            if (index < 0) { break; }
             if (openParen == closeBracket + 1) {
                 int closeParen = markdown.indexOf(")", openParen);
-                if (negativeIndex(closeParen)) {break; }
+                if (index < 0) {break; }
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
                 currentIndex = closeParen + 1;
             }
