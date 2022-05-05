@@ -23,14 +23,14 @@ public class MarkdownParse {
                 if (openParen < 0) { break; }
                 int lastParen = closeParen + 1;
                 while (lastParen < markdown.length()) {
-                    if (markdown.charAt(lastParen) == ' ') {
+                    if (markdown.substring(lastParen, lastParen + 1).equals(" ")) {
                         break;
                     }
-                    if (markdown.charAt(lastParen) == '\n') {
+                    if (markdown.substring(lastParen, lastParen + 1).equals("'n")) {
                             break;
                         }
                     if (lastParen + 1 < markdown.length() && 
-                        markdown.charAt(lastParen + 1) == '\n') {
+                        markdown.substring(lastParen, lastParen + 2).equals("'n")) {
                         break;
                     }
                     lastParen = markdown.indexOf(")", lastParen);
