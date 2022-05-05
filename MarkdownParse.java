@@ -30,7 +30,7 @@ public class MarkdownParse {
                             break;
                         }
                     if (lastParen + 1 < markdown.length() && 
-                        markdown.substring(lastParen, lastParen + 2).equals("'n")) {
+                        markdown.substring(lastParen + 1, lastParen + 2).equals("'n")) {
                         break;
                     }
                     lastParen = markdown.indexOf(")", lastParen);
