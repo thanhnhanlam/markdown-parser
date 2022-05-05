@@ -20,7 +20,24 @@ public class MarkdownParse {
             if (openParen < 0) { break; }
             if (openParen == closeBracket + 1) {
                 int closeParen = markdown.indexOf(")", openParen);
-                if (openParen < 0) {break; }
+                if (openParen < 0) { break; }
+                int lastParen = closeParen + 1;
+                while (lastParen < markdown.length()) {
+                    if (markdown.charAt(lastParen) == ' ') {
+                        break;
+                    }
+                    if (markdown.charAt(lastParen) == '\n') {
+                            break;
+                        }
+                    if (lastParen + 1 < markdown.length() && 
+                        markdown.charAt(lastParen + 1) == '\n') {
+                        break;
+                    }
+                    lastParen = markdown.indexOf(")", lastParen);
+                    if (lastParen < 0) { break; }
+                    else { closeParen = lastParen; }
+                    lastParen = closeParen + 1;
+                }
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
                 currentIndex = closeParen + 1;
             }
@@ -36,6 +53,6 @@ public class MarkdownParse {
         Path fileName = Path.of(args[0]);
         String content = Files.readString(fileName);
         ArrayList<String> links = getLinks(content);
-	    System.out.println(links);
+        System.out.println(links);
     }
 }
