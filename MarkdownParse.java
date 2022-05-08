@@ -63,6 +63,3 @@ public class MarkdownParse {
         System.out.println(links);
     }
 }
-// a new comment
-// a new line
-// a new line
