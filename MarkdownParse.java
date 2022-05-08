@@ -26,19 +26,8 @@ public class MarkdownParse {
                     if (markdown.substring(lastParen, lastParen + 1).equals(" ")) {
                         break;
                     }
-                    if (markdown.charAt(lastParen) == '\n') {
-                        break;
-                    }
-                    if (markdown.substring(lastParen, lastParen + 1).equals("/n")) {
+                    if (markdown.substring(lastParen, lastParen + 1).equals("\n")) {
                             break;
-                    }
-                    if (lastParen + 1 < markdown.length()) {
-                        if (markdown.charAt(lastParen + 1) == '\n') {
-                            break;
-                        }
-                        if (markdown.substring(lastParen + 1, lastParen + 2).equals("\n")) {
-                            break;
-                        }
                     }
                     lastParen = markdown.indexOf(")", lastParen);
                     if (lastParen < 0) { break; }
@@ -61,5 +50,18 @@ public class MarkdownParse {
         String content = Files.readString(fileName);
         ArrayList<String> links = getLinks(content);
         System.out.println(links);
+        // findIndexNewLines();
+    }
+    
+    public static void findIndexNewLines() throws IOException {
+        String content = Files.readString(Path.of("newlines.md"));
+        for (int i = 0; i < content.length(); i++) {
+            if (content.charAt(i) == '\n') {
+                System.out.println("charAt: " + i);
+            }
+            if (content.substring(i, i + 1).equals("\n")) {
+                System.out.println("substring: " + i);
+            }
+        }
     }
 }
