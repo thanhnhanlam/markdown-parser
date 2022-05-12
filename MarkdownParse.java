@@ -7,6 +7,23 @@ import java.util.ArrayList;
 
 public class MarkdownParse {
 
+    public static int getIndexOfLastParen(String markdown, int closeParen) {
+        int lastParen = closeParen + 1;
+        while (lastParen < markdown.length()) {
+            if (markdown.substring(lastParen, lastParen + 1).equals(" ")) {
+                break;
+            }
+            if (markdown.substring(lastParen, lastParen + 1).equals("\n")) {
+                break;
+            }
+            lastParen = markdown.indexOf(")", lastParen);
+            if (lastParen < 0) { break; }
+            else { closeParen = lastParen; }
+            lastParen = closeParen + 1;
+        }
+        return closeParen;
+    }
+
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
@@ -21,19 +38,7 @@ public class MarkdownParse {
             if (openParen == closeBracket + 1) {
                 int closeParen = markdown.indexOf(")", openParen);
                 if (openParen < 0) { break; }
-                int lastParen = closeParen + 1;
-                while (lastParen < markdown.length()) {
-                    if (markdown.substring(lastParen, lastParen + 1).equals(" ")) {
-                        break;
-                    }
-                    if (markdown.substring(lastParen, lastParen + 1).equals("\n")) {
-                            break;
-                    }
-                    lastParen = markdown.indexOf(")", lastParen);
-                    if (lastParen < 0) { break; }
-                    else { closeParen = lastParen; }
-                    lastParen = closeParen + 1;
-                }
+                closeParen = getIndexOfLastParen(markdown, closeParen);
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
                 currentIndex = closeParen + 1;
             }
