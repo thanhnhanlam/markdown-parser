@@ -29,6 +29,9 @@ public class MarkdownParse {
                     if (markdown.substring(lastParen, lastParen + 1).equals("\n")) {
                             break;
                     }
+                    else if (markdown.substring(lastParen + 1, lastParen + 2).equals("\n")) {
+                        break;
+                    }
                     lastParen = markdown.indexOf(")", lastParen);
                     if (lastParen < 0) { break; }
                     else { closeParen = lastParen; }
