@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public class MarkdownParse {
 
-    public static int getIndexOfLastParen(String markdown, int closeParen) {
+    public static int getIndexOfLastParen(String markdown, int openParen) {
+        int closeParen = markdown.indexOf(")", openParen);
         int lastParen = closeParen + 1;
         while (lastParen < markdown.length()) {
             if (markdown.substring(lastParen, lastParen + 1).equals(" ")) {
@@ -32,13 +33,12 @@ public class MarkdownParse {
             int openBracket = markdown.indexOf("[", currentIndex);
             int closeBracket = markdown.indexOf("]", openBracket);
             int openParen = markdown.indexOf("(", closeBracket);
-            if (openBracket < 0 || closeBracket < 0 || openParen < 0) { 
-                break;
+            int closeParen = getIndexOfLastParen(markdown, openParen);
+            if (openBracket < 0 || closeBracket < 0 
+                || openParen < 0 || closeParen < 0) { 
+                    break;
             }
             if (openParen == closeBracket + 1) {
-                int closeParen = markdown.indexOf(")", openParen);
-                if (openParen < 0) { break; }
-                closeParen = getIndexOfLastParen(markdown, closeParen);
                 toReturn.add(markdown.substring(openParen + 1, closeParen));
                 currentIndex = closeParen + 1;
             }
