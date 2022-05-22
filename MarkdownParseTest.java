@@ -143,7 +143,7 @@ public class MarkdownParseTest {
     
     @Test
     public void testos() {
-        assertEquals("?",  System.out.get("os"));
+        assertEquals("?",  System.getProperty("os.name"));
     }
                      
 }
