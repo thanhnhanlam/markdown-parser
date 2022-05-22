@@ -140,10 +140,5 @@ public class MarkdownParseTest {
         String testFileContent = Files.readString(testFile);
         assertEquals(testFileLinks, MarkdownParse.getLinks(testFileContent));
     }
-    
-    @Test
-    public void testos() {
-        assertEquals("?",  System.getProperty("os.name"));
-    }
                      
 }
