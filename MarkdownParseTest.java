@@ -75,7 +75,7 @@ public class MarkdownParseTest {
 
     @Test
     public void testFile3() throws IOException {
-        Path testFile = Path.of(TEST_FOLDER + "test-file3.md");
+        Path testFile = Path.of("test-file3.md");
         String testFileContent = Files.readString(testFile);
         assertEquals(MarkdownParse.getLinks(testFileContent), emptyString);
     }
