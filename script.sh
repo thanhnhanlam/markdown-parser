@@ -1,12 +1,5 @@
-make MarkdownParse.class
-for file in ./*.md
+for file in test-files/*.md;
 do
-	echo $file
-	java MarkdownParse $file
-done
-
-for file in test-files/*.md
-do
-	echo $file
-	java MarkdownParse $file
+  echo $file
+  java MarkdownParse $file
 done
